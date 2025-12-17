@@ -1,6 +1,6 @@
 import os
 from reedsolo import RSCodec
-from channels import qsc_channel, qsc_erasure_channel
+from rs.channels import qsc_channel, qsc_erasure_channel
 
 def count_symbol_errors(codeword, noisy, erasures):
     e = 0
@@ -15,11 +15,11 @@ def errors_only_baseline(p):
 
     anomaly_count = 0
 
-    e = count_symbol_errors(codeword, noisy, [])
-    theory_check = e <= 32
-
     codeword = rsc.encode(223)
     noisy = qsc_channel(codeword, p)
+
+    e = count_symbol_errors(msg, noisy, [])
+    theory_check = e <= 32
 
     try:
         decoded, _, _ = rsc.decode(noisy)
@@ -39,7 +39,7 @@ def errors_only_baseline(p):
 
     return frame_errors, bit_errors, anomaly_count
 
-def errors_erasures_baseline(p_err, p_erase, DEBUG = False):
+def errors_erasures_baseline(p_err, p_erase):
     rsc = RSCodec(32)
     msg = os.urandom(223)
 
