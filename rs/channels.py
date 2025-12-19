@@ -12,7 +12,7 @@ def qsc_channel(codeword: bytes, p: float) -> bytes:
         p: Symbol error probability (0 <= p <= 1)
 
     Returns:
-        A noisy version of the input codeword, wjere each symbol
+        A noisy version of the input codeword, where each symbol
         is independently corrupted with probability 'p'.
     """
     noisy = bytearray(codeword)
