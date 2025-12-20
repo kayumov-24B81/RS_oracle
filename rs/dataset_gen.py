@@ -112,10 +112,10 @@ class RSPositionDataset(Dataset):
             input_vector = np.concatenate([syndrome_bits, zero_mask])
 
             error_pattern = bytes(a ^ b for a,b in zip(codeword, noisy))
-            positions = np.array([1.0 if e != 0 else 0.0 for e in error_pattern], dtype = np.float32)
+            positions_vector = np.array([1.0 if e != 0 else 0.0 for e in error_pattern], dtype = np.float32)
 
-            self.inputs.append(input_vector)
-            self.positions.append(positions)
+            inputs.append(input_vector)
+            positions.append(positions_vector)
 
         self.inputs = np.array(inputs, dtype=np.float32)
         self.positions = np.array(positions, dtype=np.float32)
