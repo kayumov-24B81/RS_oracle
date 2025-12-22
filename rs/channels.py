@@ -1,5 +1,4 @@
 import random
-from typing import List, Tuple
 
 def qsc_channel(codeword: bytes, p: float) -> bytes:
     """Simulates a q-ary symmetric channel (QSC).
