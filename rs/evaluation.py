@@ -96,7 +96,7 @@ def benchmark_time(model, channel_fn, p_err, p_erase, threshold=0.3,
         for _ in range(msgs_per_cycle):
             msg = os.urandom(K)
             codeword = rsc.encode(msg)
-            noisy, _, _ = channel_fn(codeword. p_err, p_erase)
+            noisy, _ = channel_fn(codeword, p_err, p_erase)
             test_data.append(noisy)
         
         start = time.perf_counter()
@@ -114,7 +114,7 @@ def benchmark_time(model, channel_fn, p_err, p_erase, threshold=0.3,
                 rsc.decode(noisy, erase_pos=erase_pos)
             except ReedSolomonError:
                 pass
-        hybrid_times.apend(time.perf_counter() - start)
+        hybrid_times.append(time.perf_counter() - start)
 
     return {
         'classic_mean': np.mean(classic_times),
