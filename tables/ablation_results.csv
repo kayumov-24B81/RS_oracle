@@ -1,0 +1,9 @@
+config,fsr
+BCE (baseline),0.662
+BCE + BN,0.428
+BCE + Dropout,0.698
+BCE + Dropout + BN,0.833
+Focal,0.718
+Focal + BN,0.483
+Focal + Dropout,0.738
+Focal + Dropout + BN,0.814
